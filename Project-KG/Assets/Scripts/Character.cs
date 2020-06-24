@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField]
-    private int lives = 5;
+    //[SerializeField]
+   // private int lives = 5;
     [SerializeField]
     private float speed = 3.0F;
     [SerializeField]
     private float jumpForce = 15.0F;
     private bool isGrounded = false;
+    private Animator animator;
 
     private CharState State
     {
@@ -19,7 +20,7 @@ public class Character : MonoBehaviour
     }
 
     new private Rigidbody2D rigidbody;
-    private Animator animator;
+    
     private SpriteRenderer sprite;
     private void Awake()
     {

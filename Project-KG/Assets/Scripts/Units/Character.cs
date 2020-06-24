@@ -17,9 +17,8 @@ public class Character : MonoBehaviour
     public LayerMask whatIsGround;
     public int dubleJump;
 
-    private Animator animator;
 
-    
+    private Animator animator;
 
     new private Rigidbody2D rigidbody;
     
@@ -43,11 +42,14 @@ public class Character : MonoBehaviour
     private void Update()
     {
         if (isGrounded == true) dubleJump = 1;
-
+ 
         if (isGrounded) State = CharState.Idle;
         if (Input.GetButton("Horizontal")) Run();
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && dubleJump > 0) Jump();
+         
+        if (Input.GetKeyDown(KeyCode.LeftShift)) Dash();
+
         
     }
     private void Run()
@@ -65,8 +67,18 @@ public class Character : MonoBehaviour
         rigidbody.velocity = Vector2.up * jumpForce;
         dubleJump--;
     }
+
+    private void Dash()
+    {
+        rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
+        if(sprite.flipX) { rigidbody.velocity = Vector2.left * jumpForce; }
+        else { rigidbody.velocity = Vector2.right * jumpForce * 0.8F;}
+        rigidbody.constraints = RigidbodyConstraints2D.None;
+        rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
     private void CheckGround()
     {
+        
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         if (!isGrounded) State = CharState.Jump;
     }

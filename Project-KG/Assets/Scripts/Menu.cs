@@ -50,9 +50,9 @@ public class Menu : MonoBehaviour
 
 	public void NewGame()
     {
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("Game");
 		Debug.Log("Работает");
-		//Application.LoadLevel("SampleScene");
+		//Application.LoadLevel("Game");
     }
 
 	/*public void LoadGame()

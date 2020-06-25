@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float jumpForce = 15.0F;
     private bool isGrounded = false;
+    [SerializeField]
+    public int numOfRunes = 0;
     private Animator animator;
 
     private CharState State
@@ -59,6 +61,14 @@ public class Character : MonoBehaviour
         isGrounded = colliders.Length > 1;
 
         if (!isGrounded) State = CharState.Jump;
+    }
+
+    private void GettingTheRune(Collider2D collision)
+    {
+        if(collision.gameObject.name.Equals("Rune"))
+        {
+            numOfRunes=numOfRunes+1;
+        }
     }
 }
 

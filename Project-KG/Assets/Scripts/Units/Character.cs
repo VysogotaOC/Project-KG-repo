@@ -79,6 +79,8 @@ public class Character : Unit
     }
     private void Jump()
     {
+        // State = CharState.Jump;
+        
         rigidbody.velocity = Vector2.up * jumpForce;
         doubleJump--;
     }

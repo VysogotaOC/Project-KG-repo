@@ -4708,7 +4708,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c07ca3dcbdb9cea4b8a1ebc7ab32be80, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.14
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7037,10 +7037,8 @@ MonoBehaviour:
   isFullscreen: 0
   volume: 0
   audioMixer: {fileID: 0}
-  MainMenu: {fileID: 0}
-  ExitMenu: {fileID: 0}
-  SettingsMenu: {fileID: 0}
-  LoadMenu: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
+  PauseMenu: {fileID: 2012829630}
 --- !u!4 &2115856889
 Transform:
   m_ObjectHideFlags: 0

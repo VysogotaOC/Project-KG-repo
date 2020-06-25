@@ -15,33 +15,73 @@ public class Menu : MonoBehaviour
 
 	public AudioMixer audioMixer;
 
-	/*public Dropdown resolutionDropdown;
+	public static bool GameIsPaused = false;
+
+	public Dropdown resolutionDropdown;
 
 	private Resolution[] resolutions;
 
-	private int currResolutionIndex = 0;*/
+	private int currResolutionIndex = 0;
 
-	public GameObject MainMenu;
+	Scene scene;
+
+	/*public GameObject MainMenu;
 	public GameObject ExitMenu;
 	public GameObject SettingsMenu;
-	public GameObject LoadMenu;
+	public GameObject LoadMenu;*/
 
-    void Start()
-    {
-		Debug.Log("Хуй");
-    }
+	public GameObject PauseMenu;
 
-	/*public void ShowExitMenu()
+    private void Start()
     {
-		MainMenu.SetActive(false);
-		ExitMenu.SetActive(true);
+		scene = SceneManager.GetActiveScene();
+		//Debug.Log("Active Scene is '" + scene.name);
 	}
 
-	public void BackToMainMenu()
+    void Update()
 	{
-		MainMenu.SetActive(true);
-		ExitMenu.SetActive(false);
-	}*/
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (GameIsPaused)
+			{
+				Resume();
+			}
+			else
+			{
+				PauseGame();
+			}
+		}
+	}
+
+	public void Resume()
+	{
+		if (scene.name != "Main Menu") 
+		{
+			PauseMenu.SetActive(false);
+			Time.timeScale = 1f;
+			GameIsPaused = false; 
+		}
+		
+	}
+
+	public void PauseGame()
+	{
+		if (scene.name != "Main Menu")
+		{
+			PauseMenu.SetActive(true);
+			Time.timeScale = 0f;
+			GameIsPaused = true;
+		}
+	}
+	public void ExitToMainMenu()
+	{
+		GameIsPaused = false;
+		Time.timeScale = 1f;
+		SceneManager.LoadScene("Main menu");
+	}
+
+
+	//-------------------------------------------------------------------------------------------------------------------------------
 
 	public void ExitGame()
     {
@@ -51,8 +91,6 @@ public class Menu : MonoBehaviour
 	public void NewGame()
     {
 		SceneManager.LoadScene("Game");
-		Debug.Log("Работает");
-		//Application.LoadLevel("Game");
     }
 
 	/*public void LoadGame()
@@ -72,6 +110,12 @@ public class Menu : MonoBehaviour
 	{
 		volume = val;
 	}
+
+	public void ChangeResolution(int index) 
+	{
+		currResolutionIndex = index;
+	}
+
 
 	public void SaveSettings()
 	{

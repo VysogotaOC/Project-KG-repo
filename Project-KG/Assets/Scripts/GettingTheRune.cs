@@ -9,7 +9,7 @@ public class GettingTheRune : MonoBehaviour
         Character character = collider.GetComponent<Character>();
         if (character)
         {
-            character.numOfRunes += 1;
+            ++character.numOfRunes;
             Destroy(gameObject);
         }
     }

@@ -7,13 +7,15 @@ public class Character : Unit
     // [SerializeField]
     // private int lives = 5;
     [SerializeField]
-    private float speed = 3.0F;
+    public float speed = 4.0F;
     [SerializeField]
     private float jumpForce = 15.0F;
     [SerializeField]
     private float dashTime;
     [SerializeField]
     private float dashCoolDown = 3F;
+    [SerializeField]
+    public int numOfRunes = 0;
 
 
     private bool isGrounded;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Character : Unit
 {
-    //[SerializeField]
-   // private int lives = 5;
+    // [SerializeField]
+    // private int lives = 5;
     [SerializeField]
     private float speed = 3.0F;
     [SerializeField]
@@ -20,7 +20,7 @@ public class Character : Unit
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
-    public int dubleJump;
+    public int doubleJump;
 
     public Transform punch1;
     public float punch1Radius;
@@ -52,13 +52,15 @@ public class Character : Unit
     private void Update()
     {
         dashTime += Time.deltaTime;
-        if (isGrounded == true) dubleJump = 1;
-
+        if (isGrounded == true) doubleJump = 1;
+ 
+        if (isGrounded) State = CharState.Idle;
         if (Input.GetButtonDown("Fire1")) Shoot();
-        //if (isGrounded) State = CharState.Idle;
         if (Input.GetButton("Horizontal")) Run();
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && dubleJump > 0) Jump();
+        if (Input.GetKeyDown(KeyCode.UpArrow) && doubleJump > 0) Jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) Dash();
+         
 
         if (Input.GetKeyDown(KeyCode.LeftShift))Dash();
         if (Input.GetKeyDown(KeyCode.Space)) MelleAttack.Action(punch1.position, punch1Radius, 9, 12, false);//координата точки нанесения урона, радиус действия урона, какому слою объектовв наносим урон, количество урона, массовый ли урон
@@ -77,9 +79,8 @@ public class Character : Unit
     }
     private void Jump()
     {
-
         rigidbody.velocity = Vector2.up * jumpForce;
-        dubleJump--;
+        doubleJump--;
     }
 
     private void Dash()
@@ -110,6 +111,8 @@ public class Character : Unit
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         //if (!isGrounded) State = CharState.Jump;
     }
+
+    // public Transform MyTarget { get; get; }
 }
 
 public enum CharState

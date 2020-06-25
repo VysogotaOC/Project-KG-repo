@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : Unit
 {
-    //[SerializeField]
-   // private int lives = 5;
+    // [SerializeField]
+    // private int lives = 5;
     [SerializeField]
     private float speed = 3.0F;
     [SerializeField]
@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
-    public int dubleJump;
+    public int doubleJump;
 
 
     private Animator animator;
@@ -41,12 +41,12 @@ public class Character : MonoBehaviour
     }
     private void Update()
     {
-        if (isGrounded == true) dubleJump = 1;
+        if (isGrounded == true) doubleJump = 1;
  
         if (isGrounded) State = CharState.Idle;
         if (Input.GetButton("Horizontal")) Run();
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && dubleJump > 0) Jump();
+        if (Input.GetKeyDown(KeyCode.UpArrow) && doubleJump > 0) Jump();
          
         if (Input.GetKeyDown(KeyCode.LeftShift)) Dash();
 
@@ -64,12 +64,15 @@ public class Character : MonoBehaviour
     }
     private void Jump()
     {
+        // State = CharState.Jump;
+        
         rigidbody.velocity = Vector2.up * jumpForce;
-        dubleJump--;
+        doubleJump--;
     }
 
     private void Dash()
     {
+        // State = CharState.Dash;
         rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
         if(sprite.flipX) { rigidbody.velocity = Vector2.left * jumpForce; }
         else { rigidbody.velocity = Vector2.right * jumpForce * 0.8F;}
@@ -82,6 +85,8 @@ public class Character : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         if (!isGrounded) State = CharState.Jump;
     }
+
+    // public Transform MyTarget { get; get; }
 }
 
 public enum CharState

@@ -23,25 +23,26 @@ public class Character : Unit
     public int doubleJump;
 
     public Transform punch1;
-    public float punch1Radius;
+    public float punch1Radius = 0.3F;
 
     private Bullet bullet;
 
-    // private Animator animator;
+    private Animator animator;
 
     new private Rigidbody2D rigidbody;
     
     private SpriteRenderer sprite;
-   /* private CharState State
+   private CharState State
     {
         get { return (CharState)animator.GetInteger("State"); }
         set { animator.SetInteger("State", (int)value); }
-    }*/
+    }
 
     private void Awake()
     {
+        punch1 = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         bullet = Resources.Load<Bullet>("Bullet");
     }
@@ -63,7 +64,11 @@ public class Character : Unit
          
 
         if (Input.GetKeyDown(KeyCode.LeftShift))Dash();
-        if (Input.GetKeyDown(KeyCode.Space)) MelleAttack.Action(punch1.position, punch1Radius, 9, 12, false);//координата точки нанесения урона, радиус действия урона, какому слою объектовв наносим урон, количество урона, массовый ли урон
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MelleAttack.Action(punch1.transform.position, punch1Radius, 9, 12, false);
+            // Debug.Log("test");
+        }//координата точки нанесения урона, радиус действия урона, какому слою объектовв наносим урон, количество урона, массовый ли урон
         
 
     }
@@ -75,11 +80,11 @@ public class Character : Unit
 
         sprite.flipX = direction.x < 0.0F;
 
-        //if (isGrounded) State = CharState.Run;
+        if (isGrounded) State = CharState.Run;
     }
     private void Jump()
     {
-        // State = CharState.Jump;
+        State = CharState.Jump;
         
         rigidbody.velocity = Vector2.up * jumpForce;
         doubleJump--;
@@ -111,7 +116,7 @@ public class Character : Unit
     {
         
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        //if (!isGrounded) State = CharState.Jump;
+        if (!isGrounded) State = CharState.Jump;
     }
 
     // public Transform MyTarget { get; get; }

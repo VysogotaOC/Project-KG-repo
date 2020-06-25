@@ -30,7 +30,7 @@ public class MelleAttack : MonoBehaviour
             GameObject obj = NearTarget(point, colliders);
             if (obj != null && obj.GetComponent<Monsters>())
             {
-                obj.GetComponent<Monsters>().HP -= damage;
+                // obj.GetComponent<Monsters>().HP -= damage;
             }
             return;
         }
@@ -38,7 +38,7 @@ public class MelleAttack : MonoBehaviour
         {
             if (hit.GetComponent<Monsters>())
             {
-                hit.GetComponent<Monsters>().HP -= damage;
+                // hit.GetComponent<Monsters>().HP -= damage;
             }
         }
     }

@@ -15,14 +15,15 @@ public class Character : Unit
     private float dashCoolDown = 3F;
     [SerializeField]
     private float shootCoolDown = 3F;
-
-    public int hp = 100;
+    [SerializeField]
+    public int hero_hp = 20;
     [SerializeField]
     public float speed = 4.0F;
     [SerializeField]
     private float jumpForce = 15.0F;
-    
-    
+    [SerializeField]
+    private bool isItHero = true;
+
     [SerializeField]
     public int numOfRunes = 0;
 
@@ -65,21 +66,26 @@ public class Character : Unit
     private void Update()
     {
         curTime += Time.deltaTime;
-        if (isGrounded == true) doubleJump = 1; 
-        if (isGrounded) State = CharState.Idle;        
-        if (Input.GetButton("Horizontal")) Run();
+        if (isGrounded == true) 
+            doubleJump = 1; 
+        if (isGrounded) 
+            State = CharState.Idle;        
+        if (Input.GetButton("Horizontal")) 
+            Run();
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && doubleJump > 0) Jump();
-        if (Input.GetKeyDown(KeyCode.LeftShift)) Dash();
-         
-        if (Input.GetKeyDown(KeyCode.S)) Shoot();
+        if (Input.GetKeyDown(KeyCode.UpArrow) && doubleJump > 0) 
+            Jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+            Dash();
+        
+        if (Input.GetKeyDown(KeyCode.S)) 
+            Shoot();
         if (Input.GetKeyDown(KeyCode.A))
         {
             State = CharState.Melee_attack;
             MelleAttack.Action(punch1.transform.position, punch1Radius, 9, 12.0F, false);
-        }//координата точки нанесения урона, радиус действия урона, какому слою объектовв наносим урон, количество урона, массовый ли урон
-        
-
+            // координата точки нанесения урона, радиус действия урона, какому слою объектовв наносим урон, количество урона, массовый ли урон
+        }
     }
     private void Run()
     {
@@ -141,10 +147,10 @@ public class Character : Unit
 
     public void ReceiveDamage(int damage)
     {
-        hp -= 2;
-        if(hp <= 0) 
+        hero_hp -= damage;
+        if(hero_hp <= 0) 
         {
-            base.Die();
+            base.Die(isItHero);
         }
     }
 }

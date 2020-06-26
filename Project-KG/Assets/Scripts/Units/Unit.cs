@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Unit : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class Unit : MonoBehaviour
         
     }
 
-    public virtual void Die()
+    public virtual void Die(bool isItHero)
     {
-        Destroy(gameObject);
+        
+        if(isItHero == true)
+            SceneManager.LoadScene("SampleScene");
+        else Destroy(gameObject);
     }
 }

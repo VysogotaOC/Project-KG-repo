@@ -9,7 +9,7 @@ public class MelleAttack : MonoBehaviour
         Collider2D current = null;
         float dist = Mathf.Infinity;
 
-        foreach(Collider2D coll in array)
+        foreach (Collider2D coll in array)
         {
             float curDist = Vector3.Distance(position, coll.transform.position);
             if (curDist < dist)
@@ -26,16 +26,16 @@ public class MelleAttack : MonoBehaviour
     {
         Debug.Log(damage);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
-        if(!allTargets)
+        if (!allTargets)
         {
             GameObject obj = NearTarget(point, colliders);
             if (obj != null && obj.GetComponent<Monsters>())
             {
-                 obj.GetComponent<Monsters>().hp -= damage;
+                obj.GetComponent<Monsters>().hp -= damage;
             }
             return;
         }
-        foreach(Collider2D hit in colliders)
+        foreach (Collider2D hit in colliders)
         {
             if (hit.GetComponent<Monsters>())
             {

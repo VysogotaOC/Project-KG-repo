@@ -11,16 +11,12 @@ public class Chest : Monsters
     [SerializeField]
     private int numOfRunesInside = 10;
 
-
-    public override void ReceiveDamage(float damage)
+    public override void Die()
     {
-        hp -= damage;
-        if (hp <= 0)
-        {
-            GiveRunes();
-            base.Die();
-        }
+        GiveRunes();
+        base.Die();
     }
+
     private void GiveRunes()
     {
         character.GetComponent<Character>().numOfRunes += numOfRunesInside;

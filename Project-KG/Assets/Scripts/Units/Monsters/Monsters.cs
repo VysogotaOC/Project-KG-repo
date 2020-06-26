@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 public class Monsters : Unit
@@ -31,7 +32,7 @@ public class Monsters : Unit
         }
         if (hp <= 0)
         {
-            base.Die();
+            Die();
         }
     }
     
@@ -48,8 +49,7 @@ public class Monsters : Unit
     public override void ReceiveDamage(float damage)
     {
         hp -= damage;
-        if (hp <= 0) base.Die();
+        Die();
     }
-
 
 }

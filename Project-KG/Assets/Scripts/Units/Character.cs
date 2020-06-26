@@ -126,7 +126,7 @@ public class Character : Unit
         if(curTime - shootTime >= shootCoolDown) 
         {
             State = CharState.Range_attack;
-            Vector3 position = transform.position; position.y += 0.8F;
+            Vector3 position = transform.position; position.y -= 0.2F;
             Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
             newBullet.Parent = gameObject;
             newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F : 1.0F);

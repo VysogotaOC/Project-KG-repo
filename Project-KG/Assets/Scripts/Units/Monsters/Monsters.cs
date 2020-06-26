@@ -13,7 +13,8 @@ public class Monsters : Unit
     public Transform player;
     private SpriteRenderer sprite;
 
-
+    public  float hp = 10;
+    
     private void Start()
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -28,8 +29,12 @@ public class Monsters : Unit
         {
             // do attack
         }
-        
+        if (hp <= 0)
+        {
+            base.Die();
+        }
     }
+    
 
     private void Run()
     {
@@ -40,4 +45,11 @@ public class Monsters : Unit
             sprite.flipX = false;
         else sprite.flipX = true;
     }
+    public override void ReceiveDamage(float damage)
+    {
+        hp -= damage;
+        if (hp <= 0) base.Die();
+    }
+
+
 }

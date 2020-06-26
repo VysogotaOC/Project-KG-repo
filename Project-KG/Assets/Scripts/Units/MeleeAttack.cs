@@ -24,13 +24,14 @@ public class MelleAttack : MonoBehaviour
 
     public static void Action(Vector2 point, float radius, int layerMask, float damage, bool allTargets)
     {
+        Debug.Log(damage);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
         if(!allTargets)
         {
             GameObject obj = NearTarget(point, colliders);
             if (obj != null && obj.GetComponent<Monsters>())
             {
-                // obj.GetComponent<Monsters>().HP -= damage;
+                 obj.GetComponent<Monsters>().hp -= damage;
             }
             return;
         }
@@ -38,7 +39,7 @@ public class MelleAttack : MonoBehaviour
         {
             if (hit.GetComponent<Monsters>())
             {
-                // hit.GetComponent<Monsters>().HP -= damage;
+                hit.GetComponent<Monsters>().hp -= damage;
             }
         }
     }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public virtual void ReceiveDamage()
+    public virtual void ReceiveDamage(float damage)
     {
-        // Die();
+        
     }
 
     public virtual void Die()
     {
-        // Destroy(GameObject);
+        Destroy(gameObject);
     }
 }

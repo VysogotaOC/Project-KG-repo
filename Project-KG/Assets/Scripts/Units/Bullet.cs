@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
     public Vector3 Direction { set { direction = value; } }
     private SpriteRenderer sprite;
+    public float damage = 10;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class Bullet : MonoBehaviour
 
         if (unit && unit.gameObject != parent)
         {
+            unit.ReceiveDamage(damage);
             Destroy(gameObject);
         }
     }

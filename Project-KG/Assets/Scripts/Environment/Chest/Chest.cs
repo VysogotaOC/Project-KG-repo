@@ -14,12 +14,10 @@ public class Chest : Monsters
 
     public override void ReceiveDamage(float damage)
     {
-        hp -= damage;
-        if (hp <= 0)
-        {
-            GiveRunes();
-            // base.Die();
-        }
+
+        GiveRunes();
+        // base.Die();
+        
     }
     private void GiveRunes()
     {

@@ -110,7 +110,7 @@ public class Menu : MonoBehaviour
 
 	public void NewGame()
     {
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("SampleScene");
     }
 
 	/*public void LoadGame()

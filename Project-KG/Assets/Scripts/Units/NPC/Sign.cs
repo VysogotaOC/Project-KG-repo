@@ -7,6 +7,7 @@ public class Sign : MonoBehaviour
 {
     public float resetDialogue ;
     private float timer;
+
     public GameObject KeyToTalk;
     public GameObject dialogBox;
     public Text dialogText;

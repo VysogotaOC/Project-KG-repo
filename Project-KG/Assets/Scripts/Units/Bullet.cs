@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        sprite.flipX = direction.x < 0.0F;
         Destroy(gameObject, 1.4F);
     }
 

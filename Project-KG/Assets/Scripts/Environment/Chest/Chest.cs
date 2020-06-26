@@ -5,7 +5,7 @@ using UnityEngine.Assertions.Must;
 
 public class Chest : Monsters
 {
-    public Character character;
+    // public Character character;
     //[SerializeField]
     //private new float hp = 1.0F;
     [SerializeField]
@@ -18,11 +18,11 @@ public class Chest : Monsters
         if (hp <= 0)
         {
             GiveRunes();
-            base.Die();
+            // base.Die();
         }
     }
     private void GiveRunes()
     {
-        character.GetComponent<Character>().numOfRunes += numOfRunesInside;
+        // character.GetComponent<Character>().numOfRunes += numOfRunesInside;
     }
 }

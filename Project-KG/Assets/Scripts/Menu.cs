@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using System.Linq;
 
 public class Menu : MonoBehaviour
 {
@@ -17,9 +18,13 @@ public class Menu : MonoBehaviour
 
 	public static bool GameIsPaused = false;
 
+	public Dropdown QualityDropdown;
+
 	public Dropdown resolutionDropdown;
 
-	private Resolution[] resolutions;
+	public Slider VolumeSlider;
+
+	Resolution[] realResolutions;
 
 	private int currResolutionIndex = 0;
 
@@ -32,10 +37,25 @@ public class Menu : MonoBehaviour
 
 	public GameObject PauseMenu;
 
+
     private void Start()
     {
 		scene = SceneManager.GetActiveScene();
-		//Debug.Log("Active Scene is '" + scene.name);
+
+		QualityDropdown.ClearOptions();
+		QualityDropdown.AddOptions(QualitySettings.names.ToList());
+
+		resolutionDropdown.ClearOptions();
+		Resolution[] resolutions = Screen.resolutions;
+		realResolutions = resolutions.Distinct().ToArray();
+		string[] strResolutions = new string[realResolutions.Length];
+		for (int i = 0; i < realResolutions.Length; i++)
+        {
+			strResolutions[i] = realResolutions[i].width.ToString() + "x" + realResolutions[i].height.ToString();
+		}
+			
+		resolutionDropdown.AddOptions(strResolutions.ToList());
+
 	}
 
     void Update()
@@ -120,8 +140,8 @@ public class Menu : MonoBehaviour
 	public void SaveSettings()
 	{
 		QualitySettings.SetQualityLevel(quality);
+		audioMixer.SetFloat("masterVolume", volume);
 		Screen.fullScreen = isFullscreen;
-		audioMixer.SetFloat("MasterVolume", volume);
-		//Screen.SetResolution(Screen.resolutions[currResolutionIndex].width, Screen.resolutions[currResolutionIndex].height, isFullscreen);
+		Screen.SetResolution(realResolutions[currResolutionIndex].width, realResolutions[currResolutionIndex].height, isFullscreen);
 	}
 }

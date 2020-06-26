@@ -75,6 +75,7 @@ public class Character : Unit
         if (Input.GetKeyDown(KeyCode.S)) Shoot();
         if (Input.GetKeyDown(KeyCode.A))
         {
+            State = CharState.Melee_attack;
             MelleAttack.Action(punch1.transform.position, punch1Radius, 9, 12.0F, false);
         }//координата точки нанесения урона, радиус действия урона, какому слою объектовв наносим урон, количество урона, массовый ли урон
         
@@ -103,11 +104,13 @@ public class Character : Unit
         //float curT = Time.time;
         
          if(curTime - dashTime >= dashCoolDown)
-        {
+         {
+            State = CharState.Dash;
             Vector3 direction = transform.right;
             transform.position = Vector3.MoveTowards(transform.position, transform.position + direction* (sprite.flipX ? -1.0F : 1.0F), jumpForce);
             dashTime = curTime;
-        }
+            
+         }
         
     }
 
@@ -115,12 +118,14 @@ public class Character : Unit
     {
         //float curTime = Time.time;
         if(curTime - shootTime >= shootCoolDown) 
-        { 
+        {
+            State = CharState.Range_attack;
             Vector3 position = transform.position; position.y += 0.8F;
             Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
             newBullet.Parent = gameObject;
             newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F : 1.0F);
             shootTime = curTime;
+            
         }
     }
 
@@ -149,5 +154,8 @@ public enum CharState
 {
     Idle,
     Run,
-    Jump
+    Jump,
+    Dash,
+    Melee_attack,
+    Range_attack
 }

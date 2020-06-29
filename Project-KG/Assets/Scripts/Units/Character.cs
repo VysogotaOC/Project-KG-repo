@@ -24,7 +24,7 @@ public class Character : Unit
     [SerializeField]
     private bool isItHero = true;
 
-    [SerializeField]
+    
     public int numOfRunes = 0;
 
 

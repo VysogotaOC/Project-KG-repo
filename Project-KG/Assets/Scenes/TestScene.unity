@@ -566,6 +566,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 11.087889
       objectReference: {fileID: 0}
+    - target: {fileID: 5761908760958726262, guid: 2f76201f94d01e14c8a7bd9aa6c54f60,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5994342865127788867, guid: 2f76201f94d01e14c8a7bd9aa6c54f60,
         type: 3}
       propertyPath: m_BodyType
@@ -587,6 +592,9 @@ GameObject:
   - component: {fileID: 1321875499}
   - component: {fileID: 1321875502}
   - component: {fileID: 1321875501}
+  - component: {fileID: 1321875503}
+  - component: {fileID: 1321875504}
+  - component: {fileID: 1321875505}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -651,8 +659,6 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 3
-  jumpForce: 10
   checkRadius: 0.3
   RayDistance: 0.5
   dashTime: 0
@@ -709,10 +715,60 @@ MonoBehaviour:
   damageableLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  damage: 10
-  attackRange: 0.3
-  timeBtwAttack: 0
   massAttack: 0
+--- !u!114 &1321875503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321875496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c552b21432e9d4e8405062eb5e2a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: 0
+  moveSpeed: 0
+  jumpForce: 0
+  dashForce: 0
+  dashCoolDown: 0
+  meleeAttackDamage: 0
+  meleeAttackRadius: 0
+  meleeAttackCoolDown: 0
+  rangeAttackDamage: 0
+  moveSpeedBullet: 0
+  rangeAttackCoolDown: 0
+  MaxHealthPoint: 100
+  numCharacterRunes: 0
+  numWeaponsRunes: 0
+  learnedMeleeAbilities: 
+  learnedRangeAbilities: 
+  checkChangeStats: 0
+--- !u!114 &1321875504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321875496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d559e9d9f0c9e1b4e8ebcdca490173ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1321875505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321875496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1108130cef33348afaa99e7c3538bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1521159895
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +805,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 10.942213, y: 1}
+    newSize: {x: 21.06901, y: 0.96505404}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -801,7 +857,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 10.942213, y: 1}
+  m_Size: {x: 21.06901, y: 0.96505404}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -815,7 +871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521159895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.55, y: 4.66, z: 0}
+  m_LocalPosition: {x: -1.513, y: 4.677, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -6,20 +6,24 @@ public class MeleeAttackController : MonoBehaviour
 {
     public Transform attackPoint;
     public LayerMask damageableLayerMask;
-    public float damage;
-    public float attackRange;
-    public float timeBtwAttack;
+
     public bool massAttack = false;
 
+    private Player _player;
     private Animator _animator;
     private float _timer;
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, _player.meleeAttackRadius);
     }
 
+    private void Start()
+    {
+        _player = GetComponent<Player>();
+        _animator = GetComponent<Animator>();
+    }
     private void Update()
     {
         Attack();
@@ -49,17 +53,17 @@ public class MeleeAttackController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.A))
             {
                 //_animator.SetTrigger("Attack");
-                Debug.Log(damage);
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, damageableLayerMask);
+                Debug.Log(_player.meleeAttackDamage);
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPoint.position, _player.meleeAttackRadius, damageableLayerMask);
 
                 if (!massAttack)
                 {
                     GameObject obj = NearTarget(attackPoint.position, colliders);
                     if (obj != null && obj.GetComponent<Monsters>())
                     {
-                        obj.GetComponent<DamageableObject>().ReceiveDamage(damage);
+                        obj.GetComponent<DamageableObject>().ReceiveDamage(_player.meleeAttackDamage);
                     }
-                    _timer = timeBtwAttack;
+                    _timer = _player.meleeAttackCoolDown;
                     return;
                 }
 
@@ -67,10 +71,10 @@ public class MeleeAttackController : MonoBehaviour
                 {
                     if (hit.GetComponent<DamageableObject>())
                     {
-                        hit.GetComponent<DamageableObject>().ReceiveDamage(damage);
+                        hit.GetComponent<DamageableObject>().ReceiveDamage(_player.meleeAttackDamage);
                     }
                 }
-                _timer = timeBtwAttack;
+                _timer = _player.meleeAttackCoolDown;
 
 
             }

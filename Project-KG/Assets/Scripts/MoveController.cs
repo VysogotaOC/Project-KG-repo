@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class MoveController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Animator _animator;//Интерфейс для контроля анимационной системы Mecanim.
     private SpriteRenderer _sprite;
+    private Player _player;
     private float _curTime;
     private RaycastHit2D _checkGroundRay;
     private bool _isGround;
@@ -16,8 +18,6 @@ public class MoveController : MonoBehaviour
 
    // public Transform groundCheckPoint;
     public LayerMask groundLayerMask;
-    public float moveSpeed = 3.0F;
-    public float jumpForce = 10.0F;
     public float checkRadius = .3F;
     public float RayDistance;
     public float dashTime;
@@ -28,6 +28,7 @@ public class MoveController : MonoBehaviour
 
     private void Start()
     {
+        _player = GetComponent<Player>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
@@ -47,6 +48,8 @@ public class MoveController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow)) Jump();
         if (Input.GetKeyDown(KeyCode.LeftShift))
             Dash();
+        //_player.GetType().GetProperty("meleeAttackDamageModification").SetValue(_player, 15);
+        //Debug.Log( _player.GetType().GetProperty("meleeAttackDamageModification").GetValue(_player));
     }
 
     
@@ -64,7 +67,7 @@ public class MoveController : MonoBehaviour
             Flip();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, _player.moveSpeed * Time.deltaTime);
 
         //if (_isGrounded) State = CharState.Run;
     }
@@ -74,7 +77,7 @@ public class MoveController : MonoBehaviour
         if (doubleJump)
         {
             //State = CharState.Jump;
-            _rigidbody.velocity = Vector2.up * jumpForce;
+            _rigidbody.velocity = Vector2.up * _player.jumpForce;
             //_rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             doubleJump = false;
         }
@@ -82,10 +85,10 @@ public class MoveController : MonoBehaviour
 
     private void Dash()
     {
-        if (_curTime - dashTime >= dashCoolDown)
+        if (_curTime - dashTime >= _player.dashCoolDown)
         {
             //State = CharState.Dash;           
-            _rigidbody.AddForce(Vector2.right * jumpForce * (faceRight ? 1.0f : -1.0f), ForceMode2D.Impulse);   
+            _rigidbody.AddForce(Vector2.right * _player.dashForce * (faceRight ? 1.0f : -1.0f), ForceMode2D.Impulse);   
            // _rigidbody.velocity = new Vector2((_faceRight ? 1.0f : -1.0f) * jumpForce, _rigidbody.velocity.y);
             dashTime = _curTime;
             
@@ -114,5 +117,7 @@ public class MoveController : MonoBehaviour
         faceRight = !faceRight;
     }
 
+    
 }
+
 

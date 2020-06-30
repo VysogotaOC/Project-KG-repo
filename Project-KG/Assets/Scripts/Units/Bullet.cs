@@ -6,28 +6,29 @@ public class Bullet : MonoBehaviour
 {
     private GameObject parent;
     public GameObject Parent { set { parent = value; } get { return parent; } }
+    private Player _player;
 
-    private float speed = 10.0F;
     private Vector3 direction;
+    private SpriteRenderer _sprite;
     public Vector3 Direction { set { direction = value; } }
-    private SpriteRenderer sprite;
-    public float damage = 10;
+    
 
     private void Awake()
     {
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        _player = GetComponent<Player>();
+        _sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
-        sprite.flipX = direction.x < 0.0F;
+        _sprite.flipX = direction.x < 0.0F;
         Destroy(gameObject, 1.4F);
     }
 
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, _player.moveSpeedBullet* Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -36,7 +37,7 @@ public class Bullet : MonoBehaviour
 
         if (unit && unit.gameObject != parent)
         {
-            unit.ReceiveDamage(damage);
+            unit.ReceiveDamage(_player.rangeAttackDamage);
             Destroy(gameObject);
         }
     }

@@ -6,17 +6,17 @@ using UnityEngine;
 public class Character : Unit
 {
     //times
-    private float curTime;
+    public float curTime;
     [SerializeField]
     public float dashTime = 0.0F;
     [SerializeField]
     public float shootTime = 0.0F;
     [SerializeField]
-    private float dashCoolDown = 3F;
+    public float dashCoolDown = 3F;
     [SerializeField]
     private float shootCoolDown = 3F;
     [SerializeField]
-    public int hero_hp = 20;
+    public float hero_hp = 20;
     [SerializeField]
     public float speed = 4.0F;
     [SerializeField]
@@ -26,7 +26,6 @@ public class Character : Unit
 
     
     public int numOfRunes = 0;
-
 
 
     private bool isGrounded;

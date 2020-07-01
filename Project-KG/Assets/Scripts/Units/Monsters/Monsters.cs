@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Monsters : Unit
@@ -22,16 +23,19 @@ public class Monsters : Unit
 
     public Transform player;
     private SpriteRenderer sprite;
+    public GameObject HP_UI;
 
-    
-    public float hp = 10;
+    public float MaxHP;
+    public float hp;
     public bool flag = false;
     private void Start()
     {
+        hp = MaxHP;
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
     private void Update()
     {
+        HP_UI.transform.localScale = new Vector2(hp/MaxHP, 1);
         float distToPlayer = Vector2.Distance(transform.position, player.position);
         // if monster got an aggro do "Run();" until reached attack range
         if (distToPlayer < aggroField)

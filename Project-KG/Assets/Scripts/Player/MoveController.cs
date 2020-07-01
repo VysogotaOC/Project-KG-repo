@@ -11,7 +11,7 @@ public class MoveController : MonoBehaviour
     private Animator _animator;//Интерфейс для контроля анимационной системы Mecanim.
     private SpriteRenderer _sprite;
     private Player _player;
-    private float _curTime;
+    public float curDashTime;
     private RaycastHit2D _checkGroundRay;
     private bool _isGround;
     private bool _isBlock =  false;
@@ -45,7 +45,7 @@ public class MoveController : MonoBehaviour
     private void Update()
     {
         if (_isGround) doubleJump = true;
-        _curTime = Time.time;
+        curDashTime = Time.time;
         if (Input.GetButton("Horizontal"))
             Run();
         if (Input.GetKeyDown(KeyCode.UpArrow)) Jump();
@@ -90,12 +90,12 @@ public class MoveController : MonoBehaviour
 
     private void Dash()
     {
-        if (_curTime - dashTime >= _player.dashCoolDown)
+        if (curDashTime - dashTime >= _player.dashCoolDown)
         {
             //State = CharState.Dash;           
             _rigidbody.AddForce(Vector2.right * _player.dashForce * (faceRight ? 1.0f : -1.0f), ForceMode2D.Impulse);   
          
-            dashTime = _curTime;
+            dashTime = curDashTime;
             
 
         }
@@ -110,8 +110,9 @@ public class MoveController : MonoBehaviour
             checkFall = true;
             if (_isBlock == true && Time.time - _curSlamTime >= _player.slamCoolDown)
             {
+                Debug.Log(_player.meleeAttackDamage);
                 //анимация
-                MeleeAttackController.Slam(transform.position, 1.2F, 9, _player.meleeAttackDamage * 2);
+                 MeleeAttackController.Slam(transform.position, 1.5F, 9, _player.meleeAttackDamage * 2);
                 _curSlamTime = Time.time;
             }
                 

@@ -13,7 +13,6 @@ public class MeleeAttackController : MonoBehaviour
     private Animator _animator;
     private float _timer;
     public static float curSlamTime;
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -74,7 +73,7 @@ public class MeleeAttackController : MonoBehaviour
                 {
                     if (hit.GetComponent<Monsters>())
                     {
-                        hit.GetComponent<Monsters>().ReceiveDamage(_player.meleeAttackDamage);
+                        hit.gameObject.GetComponent<Monsters>().ReceiveDamage(_player.meleeAttackDamage);
                     }
                 }
                 _timer = _player.meleeAttackCoolDown;
@@ -88,14 +87,20 @@ public class MeleeAttackController : MonoBehaviour
     }
     public static void Slam(Vector2 point, float radius, int monstersLayerMask, float damage)
     {
-        Debug.Log("Slam");
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, monstersLayerMask);
+        Debug.Log("damage");
+        Debug.Log(damage);
 
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << monstersLayerMask);
+        Debug.Log(colliders.Length);
         foreach (Collider2D hit in colliders)
         {
-            if (hit.GetComponent<Monsters>())
+            GameObject b = hit.gameObject;
+            Debug.Log("hitSlam");
+            Debug.Log(hit.gameObject);
+            if (b.GetComponent<Monsters>())
             {
-                hit.GetComponent<Monsters>().ReceiveDamage(damage);
+                
+                b.GetComponent<Monsters>().ReceiveDamage(damage);
             }
         }
     }

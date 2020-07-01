@@ -54,6 +54,7 @@ public class Player : DamageableObject
 
     public bool checkChangeRangeWeapon = false;
     public bool checkChangeMeleeWeapon = false;
+    public float hp;
 
     private void Start()
     {
@@ -64,11 +65,15 @@ public class Player : DamageableObject
     {
         ChangeParametresRangeWeapon();
         ChangeParametresMeleeWeapon();
+        hp = _healthPoints;
     }
+    
 
     private void Initialization()//приравниваем все публичные переменные начальным значениям
     {
         _healthPoints = MaxHealthPoint;
+        print("player hp = ");
+        print(_healthPoints);
         armor = 1;
 
         moveSpeed = _defaultMoveSpeed;

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class GUIMain : MonoBehaviour
 {
-    public Character character;
+    public Player player;
     //public Slider HealthBar;
     public Text runes;
     public Image DashCD;
     public Image HealthBar;
+    public MoveController moveController;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,8 @@ public class GUIMain : MonoBehaviour
     void Update()
     {
         //HealthBar.value = character.hero_hp;
-        HealthBar.fillAmount = character.hero_hp / 20;
-        runes.text = character.numOfRunes.ToString();
-        DashCD.fillAmount = ((character.curTime - character.dashTime) / character.dashCoolDown);
+        HealthBar.fillAmount = player.hp / 20;
+        runes.text = player.numWeaponsRunes.ToString();
+        DashCD.fillAmount = ((moveController.curDashTime - moveController.dashTime) / player.dashCoolDown);
     }
 }

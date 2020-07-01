@@ -7,7 +7,7 @@ public class Monsters : DamageableObject
 {
     private float timer;
     public float resetAttack;
-    public Character character;
+    public Player player;
 
     [SerializeField]
     private float speed = 1.5F;
@@ -20,7 +20,7 @@ public class Monsters : DamageableObject
     [SerializeField]
     private int monsterDamage = 5;
 
-    public Transform player;
+    public Transform playerTransform;
     private SpriteRenderer sprite;
     public GameObject HP_UI;
 
@@ -29,24 +29,23 @@ public class Monsters : DamageableObject
     public bool flag = false;
     private void Start()
     {
-        hp = MaxHP;
+        hp = MaxHP = _healthPoints = 20;
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
     private void Update()
     {
+        //Debug.Log("monter hp=");
+        //Debug.Log(_healthPoints);
+        hp = _healthPoints;
         HP_UI.transform.localScale = new Vector2(hp/MaxHP, 1);
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        float distToPlayer = Vector2.Distance(transform.position, playerTransform.position);
         // if monster got an aggro do "Run();" until reached attack range
         if (distToPlayer < aggroField)
         {
-            Aggro(distToPlayer);
+            //Aggro(distToPlayer);
         } 
         
     }
-
+    
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

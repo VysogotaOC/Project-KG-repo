@@ -15,8 +15,8 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
+        _player = GetComponent<Player>();
     }
 
     private void Start()
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Unit unit = collider.GetComponent<Unit>();
+        DamageableObject unit = collider.GetComponent<DamageableObject>();
 
         if (unit && unit.gameObject != parent)
         {

@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 4010123826900799087}
   - component: {fileID: 9062334240624324610}
   - component: {fileID: 4715451878450195400}
+  - component: {fileID: -1809709240376002536}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -152,4 +153,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093a9aa564964ba469a17dfab2dcfe5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+--- !u!114 &-1809709240376002536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811029706403923108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c552b21432e9d4e8405062eb5e2a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: 0
+  moveSpeed: 0
+  jumpForce: 0
+  dashForce: 0
+  dashCoolDown: 0
+  meleeAttackDamage: 0
+  meleeAttackRadius: 0
+  meleeAttackCoolDown: 0
+  rangeAttackDamage: 0
+  moveSpeedBullet: 0
+  rangeAttackCoolDown: 0
+  MaxHealthPoint: 100
+  currNumCharacterRunes: 0
+  prevNumCharacterRunes: 0
+  valueCharacterRune: 3
+  numWeaponsRunes: 100
+  checkChangeRangeWeapon: 0
+  checkChangeMeleeWeapon: 0

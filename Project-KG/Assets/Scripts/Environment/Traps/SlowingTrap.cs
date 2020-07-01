@@ -6,19 +6,19 @@ public class SlowingTrap : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Character character = collider.GetComponent<Character>();
-        if (character)
+        Player player = collider.GetComponent<Player>();
+        if (player)
         {
-            character.speed -= 3;
+            player.moveSpeed -= 3;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Character character = collider.GetComponent<Character>();
-        if (character)
+        Player player = collider.GetComponent<Player>();
+        if (player)
         {
-            character.speed += 3;
+            player.moveSpeed += 3;
         }
     }
 }

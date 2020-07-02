@@ -36,9 +36,9 @@ public class Menu : MonoBehaviour
 	public GameObject LoadMenu;*/
 
 	public GameObject PauseMenu;
+	public GameObject GUI_comp;
 
-
-    private void Start()
+	private void Start()
     {
 		scene = SceneManager.GetActiveScene();
 
@@ -55,8 +55,7 @@ public class Menu : MonoBehaviour
 		}
 			
 		resolutionDropdown.AddOptions(strResolutions.ToList());
-
-	}
+}
 
     void Update()
 	{
@@ -77,6 +76,7 @@ public class Menu : MonoBehaviour
 	{
 		if (scene.name != "Main Menu") 
 		{
+			GUI_comp.SetActive(true);
 			PauseMenu.SetActive(false);
 			Time.timeScale = 1f;
 			GameIsPaused = false; 
@@ -88,6 +88,7 @@ public class Menu : MonoBehaviour
 	{
 		if (scene.name != "Main Menu")
 		{
+			GUI_comp.SetActive(false);
 			PauseMenu.SetActive(true);
 			Time.timeScale = 0f;
 			GameIsPaused = true;

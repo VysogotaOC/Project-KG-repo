@@ -7,7 +7,7 @@ public class RangeAttackController : MonoBehaviour
     private Bullet _bullet;
     private MoveController _move;
     private Player _player;
-    private float _timer;
+    public float _timer;
 
 
     public float timeBtwAttack;

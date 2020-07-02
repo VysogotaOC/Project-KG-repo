@@ -10,12 +10,14 @@ public class Sign : MonoBehaviour
 
     public GameObject KeyToTalk;
     public GameObject dialogBox;
+    public GameObject storeDescr;
     public Text dialogText;
     public Text dialogName;
     public string Dname;
     public bool characterInRange;
     public int countDialogs;
     public string[] dialog;
+    public GameObject store;
     int i = 0;
     // Start is called before the first frame update
     void Start()
@@ -43,9 +45,10 @@ public class Sign : MonoBehaviour
             {
                 timer = 0;
             }
-            if (dialogBox.activeInHierarchy && Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 dialogBox.SetActive(false);
+                store.SetActive(false);
                 if (i < countDialogs)
                     i = 0;
             }
@@ -60,12 +63,18 @@ public class Sign : MonoBehaviour
                 }
              
             }
+            else if (Input.GetKeyDown(KeyCode.M))
+            {
+                dialogBox.SetActive(false);
+                storeDescr.SetActive(false);
+                store.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Character"))
+        if (other.CompareTag("Player"))
         {
             characterInRange = true;
 
@@ -74,11 +83,12 @@ public class Sign : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Character"))
+        if (other.CompareTag("Player"))
         {
             characterInRange = false;
             dialogBox.SetActive(false);
             KeyToTalk.SetActive(false);
+            store.SetActive(false);
         }
     }
 

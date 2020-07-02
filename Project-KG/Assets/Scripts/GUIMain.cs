@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class GUIMain : MonoBehaviour
 {
     public Player player;
-    //public Slider HealthBar;
     public Text runes;
+    public Text HealthCurr;
     public Image DashCD;
+    public Image SlamCD;
+    public Image SpearCD;
     public Image HealthBar;
     public MoveController moveController;
+    public RangeAttackController rangeController;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +24,12 @@ public class GUIMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HealthBar.value = character.hero_hp;
-        HealthBar.fillAmount = player.hp / 20;
+        HealthCurr.text = player.hp.ToString() + "/" + player.MaxHealthPoint.ToString();
+        HealthBar.fillAmount = player.hp / player.MaxHealthPoint;
         runes.text = player.numWeaponsRunes.ToString();
         DashCD.fillAmount = ((moveController.curDashTime - moveController.dashTime) / player.dashCoolDown);
+        SlamCD.fillAmount = ((moveController.curDashTime - moveController._curSlamTime) / player.slamCoolDown);
+        //SpearCD.fillAmount = ((moveController.curDashTime - moveController.dashTime) / player.rangeAttackCoolDown);
+        SpearCD.fillAmount = ((player.rangeAttackCoolDown - rangeController._timer) / player.rangeAttackCoolDown);
     }
 }

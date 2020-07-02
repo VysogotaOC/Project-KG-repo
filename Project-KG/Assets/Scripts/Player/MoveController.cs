@@ -15,7 +15,7 @@ public class MoveController : MonoBehaviour
     private RaycastHit2D _checkGroundRay;
     private bool _isGround;
     private bool _isBlock =  false;
-    private float _curSlamTime;
+    public float _curSlamTime;
 
     // public Transform groundCheckPoint;
     public LayerMask groundLayerMask;

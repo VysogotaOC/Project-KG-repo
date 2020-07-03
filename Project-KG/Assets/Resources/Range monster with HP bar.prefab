@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1896385303803416726}
   - component: {fileID: 1896385303803416713}
   - component: {fileID: 1896385303803416712}
-  - component: {fileID: 1896385303803416715}
+  - component: {fileID: 928315314240592946}
   m_Layer: 9
   m_Name: Range monster with HP bar
   m_TagString: Untagged
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1896385303803416715
+--- !u!114 &928315314240592946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,20 +141,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1896385303803416717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cf9503fc9b16b242b6bc41ed7195862, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d11ec949f2a27749a124c48d5e973f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthPoints: 0
+  armor: 0
   resetAttack: 0
-  character: {fileID: 0}
-  speed: 0
-  aggroField: 20
-  isItHero: 0
-  attackRange: 10
-  monsterDamage: 2
   player: {fileID: 0}
-  HP_UI: {fileID: 4849598417336203470}
-  MaxHP: 5
-  hp: 5
+  speed: 1.5
+  aggroField: 4
+  isItHero: 0
+  attackRange: 1.2
+  monsterDamage: 5
+  playerTransform: {fileID: 0}
+  HP_UI: {fileID: 0}
+  MaxHP: 0
+  hp: 0
   flag: 0
 --- !u!1 &4849598416976545876
 GameObject:

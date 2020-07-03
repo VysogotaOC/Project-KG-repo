@@ -55,7 +55,7 @@ public class MeleeAttackController : MonoBehaviour
             {
                 attackRange = _player.meleeAttackRadius;
                 //_animator.SetTrigger("Attack");
-                Debug.Log(_player.meleeAttackDamage);
+                // Debug.Log(_player.meleeAttackDamage);
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, damageableLayerMask);
 
                 if (!massAttack)
@@ -87,15 +87,15 @@ public class MeleeAttackController : MonoBehaviour
     }
     public static void Slam(Vector2 point, float radius, int monstersLayerMask, float damage)
     {
-        Debug.Log("damage");
-        Debug.Log(damage);
+        // Debug.Log("damage");
+        // Debug.Log(damage);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << monstersLayerMask);
-        Debug.Log(colliders.Length);
+        // Debug.Log(colliders.Length);
         foreach (Collider2D hit in colliders)
         {
             GameObject b = hit.gameObject;
-            Debug.Log("hitSlam");
+            // Debug.Log("hitSlam");
             Debug.Log(hit.gameObject);
             if (b.GetComponent<Monsters>())
             {

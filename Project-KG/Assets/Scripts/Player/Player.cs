@@ -13,7 +13,7 @@ public class Player : DamageableObject
     private float _defaultMeleeAttackRadius = 0.5f;
     private float _defaultMeleeAttackCoolDown = 0.0f;
 
-    private float _defaultRangeAttackDamage = 6.0f;
+    private float _defaultRangeAttackDamage = 20.0f;
     private float _defaultMoveSpeedBullet = 10.0f;
     private float _defaultRangeAttackCoolDown = 3.0f;
 
@@ -39,7 +39,7 @@ public class Player : DamageableObject
     public int currNumCharacterRunes = 0; //текущее значение количества рун. Если добавляем руны персонажу, то используем это поле
     public int prevNumCharacterRunes = 0;
     public int valueCharacterRune = 3; //сколько хп добавляет одна руна
-    public int numWeaponsRunes { get; set; } = 100;
+    public int numWeaponsRunes = 100;
 
     public Dictionary<int, int> learnedMeleeAbilities = new Dictionary<int, int>();
     public Dictionary<int, int> learnedRangeAbilities = new Dictionary<int, int>();
@@ -56,6 +56,8 @@ public class Player : DamageableObject
     public bool checkChangeMeleeWeapon = false;
     public float hp;
 
+    public bool _isBlock = false;
+    public bool _isSlowingTrap = false;
     private void Start()
     {
         Initialization();
@@ -72,8 +74,8 @@ public class Player : DamageableObject
     private void Initialization()//приравниваем все публичные переменные начальным значениям
     {
         _healthPoints = MaxHealthPoint;
-        print("player hp = ");
-        print(_healthPoints);
+        // print("player hp = ");
+        // print(_healthPoints);
         armor = 1;
 
         moveSpeed = _defaultMoveSpeed;
@@ -103,8 +105,8 @@ public class Player : DamageableObject
             rangeAttackDamage += rangeAttackDamageModification;
             rangeAttackCoolDown += rangeAttackCoolDownModification;
             checkChangeRangeWeapon = false;
-            Debug.Log(" OK ");
-}
+            Debug.Log(rangeAttackDamage);
+        }
     }
     private void ChangeParametresMeleeWeapon()
     {
@@ -114,7 +116,7 @@ public class Player : DamageableObject
             meleeAttackRadius += meleeAttackRadiusModification;
             meleeAttackCoolDown += meleeAttackCoolDownModification;
             checkChangeMeleeWeapon = false;
-            Debug.Log(" OK ");
+            Debug.Log(meleeAttackDamage);
         }
 
 

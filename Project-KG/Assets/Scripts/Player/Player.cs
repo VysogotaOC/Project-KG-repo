@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : DamageableObject
 {
+    public Animator animator;
+
     private float _defaultMoveSpeed = 3.0f;
     private float _defaultJumpForce = 10.0f;
     private float _defaultDashForce = 10.0f;
@@ -58,13 +60,24 @@ public class Player : DamageableObject
 
     public bool _isBlock = false;
     public bool _isSlowingTrap = false;
+
+    public CharState State
+    {
+
+        get { return (CharState)animator.GetInteger("State"); }
+        set { animator.SetInteger("State", (int)value); }
+
+    }
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
         Initialization();
     }
 
     private void Update()
     {
+        
         ChangeParametresRangeWeapon();
         ChangeParametresMeleeWeapon();
         hp = _healthPoints;
@@ -105,7 +118,7 @@ public class Player : DamageableObject
             rangeAttackDamage += rangeAttackDamageModification;
             rangeAttackCoolDown += rangeAttackCoolDownModification;
             checkChangeRangeWeapon = false;
-            Debug.Log(rangeAttackDamage);
+            // Debug.Log(rangeAttackDamage);
         }
     }
     private void ChangeParametresMeleeWeapon()
@@ -116,7 +129,7 @@ public class Player : DamageableObject
             meleeAttackRadius += meleeAttackRadiusModification;
             meleeAttackCoolDown += meleeAttackCoolDownModification;
             checkChangeMeleeWeapon = false;
-            Debug.Log(meleeAttackDamage);
+            // Debug.Log(meleeAttackDamage);
         }
 
 
@@ -130,4 +143,16 @@ public class Player : DamageableObject
             prevNumCharacterRunes = currNumCharacterRunes;
         }
     }
+}
+
+public enum CharState
+{
+    Idle,
+    Run,
+    Jump,
+    Dash,
+    Melee_attack,
+    Range_attack,
+    Block,
+    Slam
 }

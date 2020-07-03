@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class MeleeAttackController : MonoBehaviour
@@ -25,11 +26,8 @@ public class MeleeAttackController : MonoBehaviour
         _animator = GetComponent<Animator>();
         curSlamTime = 0;
     }
-    private void Update()
-    {
-        Attack();
-    }
-    private GameObject NearTarget(Vector3 position, Collider2D[] array)
+
+    private static GameObject NearTarget(Vector3 position, Collider2D[] array)
     {
         Collider2D current = null;
         float dist = Mathf.Infinity;
@@ -46,13 +44,15 @@ public class MeleeAttackController : MonoBehaviour
 
         return (current != null) ? current.gameObject : null;
     }
-
+    /*
     public void Attack()
     {
+        
         if(_timer <= 0)
         {
             if(Input.GetKeyDown(KeyCode.A))
             {
+                // _player.State = CharState.Melee_attack;
                 attackRange = _player.meleeAttackRadius;
                 //_animator.SetTrigger("Attack");
                 // Debug.Log(_player.meleeAttackDamage);
@@ -85,11 +85,23 @@ public class MeleeAttackController : MonoBehaviour
         else { _timer -= Time.deltaTime; }
         
     }
+    */
+    public static void Attack(Vector2 point, float radius, int layerMask, float damage)
+    {
+        
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
+        GameObject obj = NearTarget(point, colliders);
+        if (obj != null && obj.GetComponent<Monsters>())
+        {
+            obj.GetComponent<Monsters>().ReceiveDamage(damage);
+        }
+
+    }
     public static void Slam(Vector2 point, float radius, int monstersLayerMask, float damage)
     {
         // Debug.Log("damage");
         // Debug.Log(damage);
-
+        
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << monstersLayerMask);
         // Debug.Log(colliders.Length);
         foreach (Collider2D hit in colliders)

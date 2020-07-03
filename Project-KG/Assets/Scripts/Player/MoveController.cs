@@ -15,6 +15,7 @@ public class MoveController : MonoBehaviour
     private RaycastHit2D _checkGroundRay;
     private bool _isGround;
     public float _curSlamTime;
+    public Transform attackPoint;
 
     // public Transform groundCheckPoint;
     public LayerMask groundLayerMask;
@@ -43,7 +44,11 @@ public class MoveController : MonoBehaviour
 
     private void Update()
     {
-        if (_isGround) doubleJump = true;
+        if (_isGround)
+        {
+            doubleJump = true;
+            _player.State = CharState.Idle;
+        }
         curDashTime = Time.time;
         if (Input.GetButton("Horizontal"))
             Run();
@@ -52,12 +57,18 @@ public class MoveController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow)) Fall();
         if (Input.GetKey(KeyCode.D)) Block();
         if (Input.GetKeyUp(KeyCode.D)) Recovery();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            _player.State = CharState.Melee_attack;
+            MeleeAttackController.Attack(attackPoint.transform.position, _player.meleeAttackRadius, 9, _player.meleeAttackDamage);
+        }
     }
 
     
 
     private void Run()
     {
+        _player.State = CharState.Run;
         Vector3 direction = transform.right * Input.GetAxis("Horizontal");
         if (!faceRight) direction = -direction;
         if(direction.x < 0.0f && faceRight)
@@ -70,7 +81,7 @@ public class MoveController : MonoBehaviour
         }
         if (_player._isBlock || _player._isSlowingTrap)
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, (_player.moveSpeed / 2)  * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, (_player.moveSpeed * 0)  * Time.deltaTime);
         }
         else  transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, _player.moveSpeed * Time.deltaTime);
 
@@ -78,7 +89,7 @@ public class MoveController : MonoBehaviour
     }
     private void Jump()
     {
-        
+        _player.State = CharState.Jump;
         if (doubleJump && !_player._isBlock)
         {
             //State = CharState.Jump;
@@ -89,8 +100,10 @@ public class MoveController : MonoBehaviour
 
     private void Dash()
     {
+        
         if (curDashTime - dashTime >= _player.dashCoolDown)
         {
+            _player.State = CharState.Dash;
             //State = CharState.Dash;           
             _rigidbody.AddForce(Vector2.right * _player.dashForce * (faceRight ? 1.0f : -1.0f), ForceMode2D.Impulse);   
          
@@ -111,6 +124,7 @@ public class MoveController : MonoBehaviour
             {
                 // Debug.Log(_player.meleeAttackDamage);
                 //анимация
+                _player.State = CharState.Slam;
                  MeleeAttackController.Slam(transform.position, 1.5F, 9, _player.meleeAttackDamage * 2);
                 _curSlamTime = Time.time;
             }
@@ -120,7 +134,7 @@ public class MoveController : MonoBehaviour
 
     private void CheckGround()
     {
-        //if (!_isGround) State = CharState.Jump;
+        
         _checkGroundRay = Physics2D.Raycast
             (
                 transform.position,
@@ -129,6 +143,7 @@ public class MoveController : MonoBehaviour
                 groundLayerMask
             );
         _isGround = _checkGroundRay;
+        if (!_isGround) _player.State = CharState.Jump;
         if (_isGround) checkFall = false;
     }
 
@@ -141,6 +156,8 @@ public class MoveController : MonoBehaviour
 
     private void Block()
     {
+        
+        _player.State = CharState.Block;
         _player._isBlock = true;
         _player.armor = 2;
     }

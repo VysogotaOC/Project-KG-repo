@@ -31,7 +31,7 @@ public class RangeAttackController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S))
             {
                 //State = CharState.Range_attack;
-                Vector3 position = transform.position; position.y += 0.8F;
+                Vector3 position = transform.position; position.y += 0.45F;
                 Bullet newBullet = Instantiate(_bullet, position, _bullet.transform.rotation) as Bullet;
                 newBullet.Parent = gameObject;
                 newBullet.Direction = newBullet.transform.right * (_move.faceRight ? 1.0f : -1.0f);

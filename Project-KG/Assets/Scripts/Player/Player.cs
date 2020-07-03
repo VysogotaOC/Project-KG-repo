@@ -56,6 +56,8 @@ public class Player : DamageableObject
     public bool checkChangeMeleeWeapon = false;
     public float hp;
 
+    public bool _isBlock = false;
+    public bool _isSlowingTrap = false;
     private void Start()
     {
         Initialization();
@@ -103,7 +105,8 @@ public class Player : DamageableObject
             rangeAttackDamage += rangeAttackDamageModification;
             rangeAttackCoolDown += rangeAttackCoolDownModification;
             checkChangeRangeWeapon = false;
-}
+            Debug.Log(rangeAttackDamage);
+        }
     }
     private void ChangeParametresMeleeWeapon()
     {
@@ -113,6 +116,7 @@ public class Player : DamageableObject
             meleeAttackRadius += meleeAttackRadiusModification;
             meleeAttackCoolDown += meleeAttackCoolDownModification;
             checkChangeMeleeWeapon = false;
+            Debug.Log(meleeAttackDamage);
         }
 
 

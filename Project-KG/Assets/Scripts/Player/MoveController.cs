@@ -14,7 +14,6 @@ public class MoveController : MonoBehaviour
     public float curDashTime;
     private RaycastHit2D _checkGroundRay;
     private bool _isGround;
-    private bool _isBlock =  false;
     private float _curSlamTime;
 
     // public Transform groundCheckPoint;
@@ -69,7 +68,7 @@ public class MoveController : MonoBehaviour
         {
             Flip();
         }
-        if (_isBlock)
+        if (_player._isBlock || _player._isSlowingTrap)
         {
             transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, (_player.moveSpeed / 2)  * Time.deltaTime);
         }
@@ -80,7 +79,7 @@ public class MoveController : MonoBehaviour
     private void Jump()
     {
         
-        if (doubleJump && !_isBlock)
+        if (doubleJump && !_player._isBlock)
         {
             //State = CharState.Jump;
             _rigidbody.velocity = Vector2.up * _player.jumpForce;
@@ -108,7 +107,7 @@ public class MoveController : MonoBehaviour
         {
             _rigidbody.velocity = Vector2.down * _player.jumpForce * 2;
             checkFall = true;
-            if (_isBlock == true && Time.time - _curSlamTime >= _player.slamCoolDown)
+            if (_player._isBlock == true && Time.time - _curSlamTime >= _player.slamCoolDown)
             {
                 Debug.Log(_player.meleeAttackDamage);
                 //анимация
@@ -142,14 +141,29 @@ public class MoveController : MonoBehaviour
 
     private void Block()
     {
-        _isBlock = true;
+        _player._isBlock = true;
         _player.armor = 2;
     }
 
     private void Recovery()
     {
-        _isBlock = false;
+        _player._isBlock = false;
         _player.armor = 1;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    { 
+        if(collision.gameObject.tag.Equals("MovingPlatform"))
+        {
+            this.transform.parent = collision.transform;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("MovingPlatform"))
+        {
+            this.transform.parent = null;
+        }
     }
 }
 

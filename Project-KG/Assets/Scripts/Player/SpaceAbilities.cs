@@ -8,12 +8,13 @@ public class SpaceAbilities : MonoBehaviour
     private float _timer;
 
 
+
     [SerializeField]
-    private float healCoolDown = 2.0F;
+    public float healCoolDown = 2.0F;
     [SerializeField]
     private float amountOfHeal = 10.0F;
 
-    private float lastHealTime = 0.0F;
+    public float lastHealTime = 0.0F;
 
     void Start()
     {

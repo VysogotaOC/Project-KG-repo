@@ -111,7 +111,7 @@ public class Menu : MonoBehaviour
 
 	public void NewGame()
     {
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("scene1");
     }
 
 	/*public void LoadGame()

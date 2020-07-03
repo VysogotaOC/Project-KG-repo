@@ -6,6 +6,8 @@ public class Player : DamageableObject
 {
     public Animator animator;
 
+    // public Rigidbody2D rb2d;
+
     private float _defaultMoveSpeed = 3.0f;
     private float _defaultJumpForce = 10.0f;
     private float _defaultDashForce = 10.0f;
@@ -81,6 +83,7 @@ public class Player : DamageableObject
         ChangeParametresRangeWeapon();
         ChangeParametresMeleeWeapon();
         hp = _healthPoints;
+        ChangeMaxHeathPoint();
     }
     
 
@@ -143,6 +146,24 @@ public class Player : DamageableObject
             prevNumCharacterRunes = currNumCharacterRunes;
         }
     }
+
+    /*
+    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
+    {
+        float timer = 0;
+
+        rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+
+        while (knockDur > timer)
+        {
+            timer += Time.deltaTime;
+
+            rb2d.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y + knockbackPwr, transform.position.z));
+        }
+
+        yield return 0;
+    }
+    */
 }
 
 public enum CharState

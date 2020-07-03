@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GUIMain : MonoBehaviour
 {
+    public Image HealCD;
+    public SpaceAbilities spaceAbilities;
     public Player player;
     public Text runes;
     public Text HealthCurr;
@@ -24,6 +26,7 @@ public class GUIMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HealCD.fillAmount = ((Time.time - spaceAbilities.lastHealTime) / spaceAbilities.healCoolDown);
         HealthCurr.text = player.hp.ToString() + "/" + player.MaxHealthPoint.ToString();
         HealthBar.fillAmount = player.hp / player.MaxHealthPoint;
         runes.text = player.numWeaponsRunes.ToString();

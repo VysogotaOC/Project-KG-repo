@@ -43,7 +43,7 @@ public class Player : DamageableObject
     public int currNumCharacterRunes = 0; //текущее значение количества рун. Если добавляем руны персонажу, то используем это поле
     public int prevNumCharacterRunes = 0;
     public int valueCharacterRune = 3; //сколько хп добавляет одна руна
-    public int numWeaponsRunes = 100;
+    public int numWeaponsRunes = 0;
 
     public Dictionary<int, int> learnedMeleeAbilities = new Dictionary<int, int>();
     public Dictionary<int, int> learnedRangeAbilities = new Dictionary<int, int>();

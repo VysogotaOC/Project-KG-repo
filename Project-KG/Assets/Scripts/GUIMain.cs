@@ -26,7 +26,7 @@ public class GUIMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HealCD.fillAmount = ((Time.time - spaceAbilities.lastHealTime) / spaceAbilities.healCoolDown);
+        // HealCD.fillAmount = ((Time.time - spaceAbilities.lastHealTime) / spaceAbilities.healCoolDown);
         HealthCurr.text = player.hp.ToString() + "/" + player.MaxHealthPoint.ToString();
         HealthBar.fillAmount = player.hp / player.MaxHealthPoint;
         runes.text = player.numWeaponsRunes.ToString();

@@ -111,13 +111,24 @@ public class Menu : MonoBehaviour
 
 	public void NewGame()
     {
-		SceneManager.LoadScene("scene1");
+		SceneManager.LoadScene("SampleScene");
     }
 
-	/*public void LoadGame()
+	public void LoadGame1()
 	{
-		Application.LoadLevel(level);
-	}*/
+		// Application.LoadLevel(level);
+		SceneManager.LoadScene("scene1");
+	}
+	public void LoadGame2()
+	{
+		// Application.LoadLevel(level);
+		SceneManager.LoadScene("Scene 3");
+	}
+	public void LoadGame3()
+	{
+		// Application.LoadLevel(level);
+		SceneManager.LoadScene("Scene 4");
+	}
 
 	public void ChangeQuality(int index)
 	{

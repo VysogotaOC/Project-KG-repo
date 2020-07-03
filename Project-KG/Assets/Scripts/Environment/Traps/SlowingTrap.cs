@@ -9,7 +9,7 @@ public class SlowingTrap : MonoBehaviour
         Player player = collider.GetComponent<Player>();
         if (player)
         {
-            player.moveSpeed -= 3;
+            player._isSlowingTrap = true;
         }
     }
 
@@ -18,7 +18,7 @@ public class SlowingTrap : MonoBehaviour
         Player player = collider.GetComponent<Player>();
         if (player)
         {
-            player.moveSpeed += 3;
+            player._isSlowingTrap = false;
         }
     }
 }

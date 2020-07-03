@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class AbilitiesController : MonoBehaviour
 {
@@ -12,11 +13,10 @@ public class AbilitiesController : MonoBehaviour
         _player = GetComponent<Player>();
         _weaponsAbility = GetComponent<StructOfWeaponsAbilities>();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
-        Abilities();
+
     }
     private void Abilities()
     {

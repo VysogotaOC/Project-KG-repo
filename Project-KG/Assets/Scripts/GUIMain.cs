@@ -22,7 +22,7 @@ public class GUIMain : MonoBehaviour
     void Update()
     {
         //HealthBar.value = character.hero_hp;
-        HealthBar.fillAmount = player.hp / 20;
+        HealthBar.fillAmount = player.hp / player.MaxHealthPoint;
         runes.text = player.numWeaponsRunes.ToString();
         DashCD.fillAmount = ((moveController.curDashTime - moveController.dashTime) / player.dashCoolDown);
     }

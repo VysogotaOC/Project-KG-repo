@@ -5,15 +5,17 @@ ScriptsOnlyBuild:
     - Bullet
     - CameraController
     - FallingPlatform
+    - FollowingAI
     - GUIMain
     - MeleeAttackController
     - Menu
-    - Monsters
     - MoveController
     - Player
     - RangeAttackController
     - SlowingTrap
+    - SpaceAbilities
     - StructOfWeaponsAbilities
+    - Troll
     - XMovingPlatform
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
@@ -84,39 +86,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11156}
     - Class: 114
-      Script: {instanceID: 11464}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 11470}
     - Class: 114
-      Script: {instanceID: 11518}
+      Script: {instanceID: 11520}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 12016}
     - Class: 114
-      Script: {instanceID: 12306}
+      Script: {instanceID: 12310}
     - Class: 114
-      Script: {instanceID: 12344}
+      Script: {instanceID: 12348}
     - Class: 114
-      Script: {instanceID: 12538}
+      Script: {instanceID: 12542}
     - Class: 114
-      Script: {instanceID: 12578}
+      Script: {instanceID: 12582}
     - Class: 114
-      Script: {instanceID: 12660}
+      Script: {instanceID: 12664}
     - Class: 114
-      Script: {instanceID: 12896}
+      Script: {instanceID: 12900}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12974}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13418}
     - Class: 114
-      Script: {instanceID: 14244}
+      Script: {instanceID: 14250}
     - Class: 114
-      Script: {instanceID: 14246}
+      Script: {instanceID: 14252}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 14284}
     - Class: 114
-      Script: {instanceID: 14298}
+      Script: {instanceID: 14304}
     - Class: 114
-      Script: {instanceID: 28074}
+      Script: {instanceID: 27970}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -181,49 +183,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11156}
     - Class: 114
-      Script: {instanceID: 11464}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 11470}
     - Class: 114
-      Script: {instanceID: 11518}
+      Script: {instanceID: 11520}
     - Class: 114
-      Script: {instanceID: 11776}
+      Script: {instanceID: 11778}
     - Class: 114
-      Script: {instanceID: 11894}
+      Script: {instanceID: 11896}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 12008}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 12016}
     - Class: 114
-      Script: {instanceID: 12306}
+      Script: {instanceID: 12310}
     - Class: 114
-      Script: {instanceID: 12538}
+      Script: {instanceID: 12542}
     - Class: 114
-      Script: {instanceID: 12578}
+      Script: {instanceID: 12582}
     - Class: 114
-      Script: {instanceID: 12584}
+      Script: {instanceID: 12588}
     - Class: 114
-      Script: {instanceID: 12660}
+      Script: {instanceID: 12664}
     - Class: 114
-      Script: {instanceID: 12896}
+      Script: {instanceID: 12900}
     - Class: 114
-      Script: {instanceID: 12916}
+      Script: {instanceID: 12920}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12974}
     - Class: 114
-      Script: {instanceID: 13162}
+      Script: {instanceID: 13166}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13196}
     - Class: 114
-      Script: {instanceID: 13652}
+      Script: {instanceID: 13418}
     - Class: 114
-      Script: {instanceID: 14244}
+      Script: {instanceID: 13658}
     - Class: 114
-      Script: {instanceID: 14246}
+      Script: {instanceID: 14250}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 14252}
     - Class: 114
-      Script: {instanceID: 14298}
+      Script: {instanceID: 14284}
+    - Class: 114
+      Script: {instanceID: 14304}
+    - Class: 114
+      Script: {instanceID: 14366}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -309,6 +315,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: GroupTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 0fa15075fe9d043250a0aea9368cc60c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GuardingAI
   - hash:
       serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
@@ -461,6 +473,12 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: bbb31050b08663befc49ce2f316f92a6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Troll
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -473,7 +491,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: e77a629185d6fb875e80176c2c5171e4
+      Hash: fc96e8c179c2b330213420ae8910af2a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Monsters
@@ -645,6 +663,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
     className: SpriteSkin
+  - hash:
+      serializedVersion: 2
+      Hash: d76aa07f996f7f1f21244c8273ab1db8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpaceAbilities
   - hash:
       serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
@@ -845,6 +869,12 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: 16ba7cdc8d9775fa3a8533681c4db11a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FollowingAI
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -853,4 +883,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/aleks/Desktop/prepreAlpha/Project-KG.exe
+  playerPath: C:/Users/VysogotaOC/Desktop/Resolution/Project-KG.exe

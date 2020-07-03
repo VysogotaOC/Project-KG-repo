@@ -110,7 +110,7 @@ public class MoveController : MonoBehaviour
             checkFall = true;
             if (_isBlock == true && Time.time - _curSlamTime >= _player.slamCoolDown)
             {
-                Debug.Log(_player.meleeAttackDamage);
+                // Debug.Log(_player.meleeAttackDamage);
                 //анимация
                  MeleeAttackController.Slam(transform.position, 1.5F, 9, _player.meleeAttackDamage * 2);
                 _curSlamTime = Time.time;

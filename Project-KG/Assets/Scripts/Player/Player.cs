@@ -13,7 +13,7 @@ public class Player : DamageableObject
     private float _defaultMeleeAttackRadius = 0.5f;
     private float _defaultMeleeAttackCoolDown = 0.0f;
 
-    private float _defaultRangeAttackDamage = 6.0f;
+    private float _defaultRangeAttackDamage = 20.0f;
     private float _defaultMoveSpeedBullet = 10.0f;
     private float _defaultRangeAttackCoolDown = 3.0f;
 
@@ -72,8 +72,8 @@ public class Player : DamageableObject
     private void Initialization()//приравниваем все публичные переменные начальным значениям
     {
         _healthPoints = MaxHealthPoint;
-        print("player hp = ");
-        print(_healthPoints);
+        // print("player hp = ");
+        // print(_healthPoints);
         armor = 1;
 
         moveSpeed = _defaultMoveSpeed;
